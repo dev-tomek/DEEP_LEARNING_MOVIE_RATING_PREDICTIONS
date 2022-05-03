@@ -12,7 +12,9 @@ class Data:
        self.f_movies = self.movies[self.f_conditions].drop(['adult', 'status', 'video'], axis=1)
        self.btc_transform(self.f_movies)
        self.original_language_transform(self.f_movies)
-       self.genre_extractor(self.f_movies)
+       self.extractor(self.f_movies, 'genres', 'name') #extracting genres
+       self.extractor(self.f_movies, 'production_countries', 'iso_3166_1') #extracting country codes
+       self.extractor(self.f_movies, 'production_companies', 'name') #extracting country codes
 
     def btc_transform(self, f_movies):
         """
@@ -40,9 +42,10 @@ class Data:
         """
         extracts the genres from the dictionaries contained in the 'genre' column
         """
+        final_list = []
         for genre in f_movies['genres']:
             if genre == '[]':
-                genre = []
+                final_genres.append([])
             else:
                 final_genres = []
                 genre = genre.strip('[]').replace("'", "\"")
@@ -56,38 +59,42 @@ class Data:
                 for item in genre:   
                     tmp = json.loads(item)
                     final_genres.append(tmp['name'])
-                genre = final_genres
+            final_list.append(final_genres)
+        f_movies['genres'] = final_list
+
+    def extractor(self, f_movies, column, dict_key):
+        """
+        converts from string to dictionary and extracts values from particulary key
+        """
+        # final_list = []
+        # idx = 0
+        # for row in f_movies[column]:
+        #     if row == '[]':
+        #         final_list.append(['Unknown'])
+        #     else:
+        #         final_values = []
+        #         row = row.strip('[]').replace("'", "\"")
+        #         for i in range(len(row)):
+        #             if row[i] == ',':
+        #                 if row[i-1] != '}':
+        #                     pass
+        #                 else:
+        #                     row = row[:i] + '@' + row[i + 1:]
+        #         row = row.replace(" ", "").split('@')
+        #         print(idx)
+        #         idx+=1
+        #         print(row)
+        #         for item in row: #for each dictionary in a row
+        #             tmp = json.loads(item) #load that dict
+        #             final_values.append(tmp[dict_key]) #extract value
+        #         final_list.append(final_values)
+        # f_movies[column] = final_list
+        print(f_movies.iloc[4006]['production_countries'])
+        
 
 
 
 
-        # stripped = f_movies['genres'][0].strip('[]')
-        # json_adjusted = stripped.replace("'", "\"")
-        # for i in range(len(json_adjusted)):
-        #     if json_adjusted[i] == ',':
-        #         if json_adjusted[i-1] != '}':
-        #             pass
-        #         else:
-        #             json_adjusted = json_adjusted[:i] + '@' + json_adjusted[i + 1:]
 
-        # json_adjusted = json_adjusted.split('@')
-        # for item in json_adjusted:
-        #     tmp = json.loads(item)
-        #     print(type(tmp))
-        #     print(tmp)
-
-
-
-
-
-
-
-
-
-        #s = df[0]
-        #print(df['belongs_to_collection'][0])
-        # json_acceptable_string = s.replace("'", "\"")
-        # d = json.loads(json_acceptable_string)
-        # print(d)
-        # print(type(d))
-        # print(d['id'])s
+        #['{"id":80,"name":"Crime"}', '{"id":28,"name":"Action"}']
+        #[{'iso_3166_1': 'US', 'name': 'United States of America'}]

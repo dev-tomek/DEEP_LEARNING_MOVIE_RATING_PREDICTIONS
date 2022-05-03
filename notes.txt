@@ -46,3 +46,9 @@ AR: datatype
 
 3. OTHER AR
 AR: w vote_count usunac te rekordy ktore maja wartosc 0
+
+
+
+03.05.2022 PLAN
+- ogarnac dictionary
+- kolumna title

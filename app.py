@@ -3,8 +3,9 @@ from modules import *
 def main():
     #table view
     data = DataLoader.Data()
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-        print(data.f_movies.head())
+    #with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+        #print(data.f_movies.head())
+        
 
     #GUI:
     turnon = 0  ################################# YOU CAN TURN OFF THE GUI HERE
