@@ -3,8 +3,11 @@ from modules import *
 def main():
     #table view
     data = DataLoader.Data()
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-        print(data.f_movies.head())
+
+    test = TrainAndTest.TrainAndTest()
+
+    # with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+    #     print(data.movies.head())
         
 
     #GUI:
