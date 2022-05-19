@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 import DataLoader
 import app
+import TrainAndTest
 
 
 
