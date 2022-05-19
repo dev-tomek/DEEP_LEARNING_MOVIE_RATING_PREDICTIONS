@@ -23,10 +23,27 @@ class TrainAndTest:
         self.y = self.TargetVarScalerFit.transform(self.y)
         # split data into train and test sets
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y, test_size=0.3, random_state=123)
-        print(self.X_train.shape)
-        print(self.y_train.shape)
-        print(self.X_test.shape)
-        print(self.y_test.shape)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        # print(self.X_train.shape)
+        # print(self.y_train.shape)
+        # print(self.X_test.shape)
+        # print(self.y_test.shape)
 
 
 

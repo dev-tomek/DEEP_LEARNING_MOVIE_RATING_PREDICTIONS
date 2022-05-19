@@ -15,7 +15,7 @@ class Data:
        self.datatype_conversion(self.movies)
        self.original_language_transform(self.movies)
        self.release_date_transform(self.movies)
-       self.data_filter(self.movies)
+       self.data_filter()
        self.byHandRemoval(self.movies)
        self.extractor(self.movies, 'genres', 'name') #extracting genres
        self.extractor(self.movies, 'production_countries', 'iso_3166_1') #extracting country codes
@@ -24,6 +24,8 @@ class Data:
        self.one_hot_encode(self.movies, 'original_language')
        self.production_country_transform(self.movies)
        self.one_hot_encode(self.movies, 'production_countries')
+
+        
        
 
     def btc_transform(self, movies):
@@ -65,12 +67,12 @@ class Data:
         movies['release_date'] = movies['release_date'].str[:4]
         movies['release_date'] = pd.to_numeric(movies['release_date'])
 
-    def data_filter(self, movies):
+    def data_filter(self):
         """
         gets rid of particular data
         """
-        self.movies = movies[movies['vote_count'] != 0]
-        self.movies = movies[movies['release_date'] != 0]
+        self.movies = self.movies[self.movies['vote_count'] != 0]
+        self.movies = self.movies[self.movies['release_date'] != 0]
 
     def byHandRemoval(self, movies):
         """

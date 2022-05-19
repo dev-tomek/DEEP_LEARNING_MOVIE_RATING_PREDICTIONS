@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import DataLoader
 import app
 import TrainAndTest
+import neural_network
 
 
 
