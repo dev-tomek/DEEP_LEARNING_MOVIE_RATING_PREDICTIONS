@@ -74,7 +74,7 @@ class GUI:
         entry_values = []
         for entry in self.entries:
             if not entry.get():
-                entry_values.append(0)
+                entry_values.append('0')
             else:
                 entry_values.append(entry.get())
         self.text_boxes[0].configure(state='normal')
@@ -82,10 +82,12 @@ class GUI:
         self.text_boxes[0].insert(tk.END, entry_values)
         self.text_boxes[0].config(state=tk.DISABLED)
         self.user_input.entries = entry_values
+        self.user_input.new_row = self.user_input.create_row()
+        self.user_input.send_row()
         return entry_values
 
     def Prediction(self):
-        print(self.user_input.genre)
+        print(self.user_input.train_and_test.input_row)
 
     #READ INPUT BUTTON
     def button_definitions(self):

@@ -24,7 +24,7 @@ class Data:
        #self.extractor(self.movies, 'production_companies', 'name') #extracting country codes
        self.one_hot_encode(self.movies, 'genres')
        self.one_hot_encode(self.movies, 'original_language')
-       self.movies = self.movies.rename(columns=str.lower())
+       self.movies = self.movies.rename(columns=str.lower)
        self.production_country_transform(self.movies)
        self.one_hot_encode(self.movies, 'production_countries')
 
