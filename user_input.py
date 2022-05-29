@@ -44,5 +44,5 @@ class UserInput:
     
     def send_row(self):
         self.train_and_test.input_row = self.new_row
-        self.train_and_test.data.movies.append(self.new_row)
+        self.train_and_test.data.movies = self.train_and_test.data.movies.append(self.new_row)
 

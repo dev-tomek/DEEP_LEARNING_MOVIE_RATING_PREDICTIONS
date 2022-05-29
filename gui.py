@@ -87,7 +87,8 @@ class GUI:
         return entry_values
 
     def Prediction(self):
-        print(self.user_input.train_and_test.input_row)
+        print(self.user_input.train_and_test.data.movies.tail(1))
+        print(self.user_input.train_and_test.data.movies.shape)
 
     #READ INPUT BUTTON
     def button_definitions(self):
