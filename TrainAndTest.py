@@ -38,8 +38,6 @@ class TrainAndTest:
         
         
         
-        
-        
         # print(self.X_train.shape)
         # print(self.y_train.shape)
         # print(self.X_test.shape)

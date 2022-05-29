@@ -1,4 +1,5 @@
 from modules import *
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from keras.models import Sequential
 from keras.layers import Dense
 
@@ -18,7 +19,7 @@ class NeuralNetwork:
         # compile the model
         self.model.compile(loss = 'mean_squared_error', optimizer = 'adam') 
         # fit the ANN model
-        self.model.fit(self.train_test.X_train, self.train_test.y_train, batch_size = 32, epochs = 10, verbose = 1) 
+        self.model.fit(self.train_test.X_train, self.train_test.y_train, validation_split=0.33, batch_size = 32, epochs = 10, verbose = 1) 
         
 
 
@@ -28,7 +29,11 @@ class NeuralNetwork:
         self.y_test_orig = self.train_test.TargetVarScalerFit.inverse_transform(self.train_test.y_test)
         self.Test_Data = self.train_test.PredictorScalerFit.inverse_transform(self.train_test.X_test)
 
-        self.TestingData= pd.DataFrame(data=self.Test_Data, columns=self.train_test.features)
+        self.TestingData = pd.DataFrame(data=self.Test_Data, columns=self.train_test.features)
         self.TestingData['VoteAverage'] = self.y_test_orig
         self.TestingData['PredictedVote'] = self.predictions
-        print(self.TestingData.head())
+        print(self.TestingData.head(20))
+
+        # Mean Absolute Percentage Error
+        self.mape = np.mean(100 * (np.abs(self.TestingData['VoteAverage'] - self.TestingData['PredictedVote'])/self.TestingData['VoteAverage']))
+        print("Accuracy: " + str(100 - self.mape))

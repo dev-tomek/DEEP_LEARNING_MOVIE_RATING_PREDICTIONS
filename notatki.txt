@@ -1,1 +1,1 @@
-- Jest mozliwosc ze jakies filtry nie przeszly i jest za duzo danych - ewentualnie do naprawy gdyby 
+- 

@@ -10,6 +10,8 @@ class Data:
                          (self.movies_org['status'] == 'Released') & \
                          (self.movies_org['video'] == False)
        self.movies = self.movies_org[self.f_conditions].drop(['adult', 'status', 'video'], axis=1)
+        
+
        self.movies = self.movies.drop(['production_companies'], axis=1)
        self.btc_transform(self.movies)
        self.datatype_conversion(self.movies)
@@ -22,10 +24,15 @@ class Data:
        #self.extractor(self.movies, 'production_companies', 'name') #extracting country codes
        self.one_hot_encode(self.movies, 'genres')
        self.one_hot_encode(self.movies, 'original_language')
+       self.movies = self.movies.rename(columns=str.lower())
        self.production_country_transform(self.movies)
        self.one_hot_encode(self.movies, 'production_countries')
 
-        
+       self.movies = self.movies[(self.movies['vote_count'] > 1)
+       & (self.movies['budget'] > 10) 
+       & (self.movies['popularity'] > 10)
+       & (self.movies['runtime'] > 10)
+       & (self.movies['revenue'] > 10)]
        
 
     def btc_transform(self, movies):
@@ -84,7 +91,6 @@ class Data:
         movies.loc[movies.title == "Chanthaly", "production_countries"] = """[{'iso_3166_1': 'LA', 'name': "Lao People_s Democratic Republic"}]"""
         movies.loc[movies.title == "River", "production_countries"] = """[{'iso_3166_1': 'CA', 'name': 'Canada'}, {'iso_3166_1': 'LA', 'name': "Lao People_s Democratic Republic"}]"""
         self.movies = self.movies.drop(['title'], axis=1)
-
 
     def extractor(self, movies, column, dict_key):
         """
