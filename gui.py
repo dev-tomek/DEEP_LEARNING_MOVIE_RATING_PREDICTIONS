@@ -4,9 +4,10 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 class GUI:
-    def __init__(self):
+    def __init__(self, ann):
         #main tkinter object
-        self.user_input = user_input.UserInput()
+        self.ann = ann
+        self.user_input = user_input.UserInput(ann)
         self.root = tk.Tk()
         #small icon
         self.root.iconphoto(False, tk.PhotoImage(file='img\\icon1.png'))
@@ -84,11 +85,14 @@ class GUI:
         self.user_input.entries = entry_values
         self.user_input.new_row = self.user_input.create_row()
         self.user_input.send_row()
+        self.user_input.train_and_test.scaling(True)
         return entry_values
 
     def Prediction(self):
-        print(self.user_input.train_and_test.data.movies.tail(1))
-        print(self.user_input.train_and_test.data.movies.shape)
+        self.text_boxes[1].delete('1.0', tk.END) #clearuje za kazdym razem text box
+        #self.text_boxes[1].insert(tk.END, str(self.ann.p))
+        print(self.ann.p)
+        self.text_boxes[1].config(state=tk.DISABLED) #blokuje edyotowanie 
 
     #READ INPUT BUTTON
     def button_definitions(self):

@@ -20,20 +20,36 @@ class NeuralNetwork:
         self.model.compile(loss = 'mean_squared_error', optimizer = 'adam') 
         # fit the ANN model
         self.model.fit(self.train_test.X_train, self.train_test.y_train, validation_split=0.33, batch_size = 32, epochs = 10, verbose = 1) 
-        
+        self.user_row = self.train_test.user_row
+        self.p = self.prediction_constraint()
 
 
-        self.predictions = self.model.predict(self.train_test.X_test)
-        self.predictions = self.train_test.TargetVarScalerFit.inverse_transform(self.predictions)
-        # Scaling the y_test Price data back to original price scale
-        self.y_test_orig = self.train_test.TargetVarScalerFit.inverse_transform(self.train_test.y_test)
-        self.Test_Data = self.train_test.PredictorScalerFit.inverse_transform(self.train_test.X_test)
 
-        self.TestingData = pd.DataFrame(data=self.Test_Data, columns=self.train_test.features)
-        self.TestingData['VoteAverage'] = self.y_test_orig
-        self.TestingData['PredictedVote'] = self.predictions
-        print(self.TestingData.head(20))
 
-        # Mean Absolute Percentage Error
-        self.mape = np.mean(100 * (np.abs(self.TestingData['VoteAverage'] - self.TestingData['PredictedVote'])/self.TestingData['VoteAverage']))
-        print("Accuracy: " + str(100 - self.mape))
+    def prediction_constraint(self):
+        if not self.user_row:
+            p = None
+        else:
+            p = self.prediction()
+        return p 
+
+
+    def prediction(self):
+        p = self.model.predict(self.user_row)
+        p = self.train_test.TargetVarScalerFit.inverse_transform(p)
+        return p
+
+        # self.predictions = self.model.predict(self.train_test.X_test)
+        # self.predictions = self.train_test.TargetVarScalerFit.inverse_transform(self.predictions)
+        # # Scaling the y_test Price data back to original price scale
+        # self.y_test_orig = self.train_test.TargetVarScalerFit.inverse_transform(self.train_test.y_test)
+        # self.Test_Data = self.train_test.PredictorScalerFit.inverse_transform(self.train_test.X_test)
+
+        # self.TestingData = pd.DataFrame(data=self.Test_Data, columns=self.train_test.features)
+        # self.TestingData['VoteAverage'] = self.y_test_orig
+        # self.TestingData['PredictedVote'] = self.predictions
+        # print(self.TestingData.head(20))
+
+        # # Mean Absolute Percentage Error
+        # self.mape = np.mean(100 * (np.abs(self.TestingData['VoteAverage'] - self.TestingData['PredictedVote'])/self.TestingData['VoteAverage']))
+        # print("Accuracy: " + str(100 - self.mape))

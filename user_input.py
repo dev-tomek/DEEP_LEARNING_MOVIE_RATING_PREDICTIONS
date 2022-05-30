@@ -3,22 +3,22 @@ from modules import *
 
 
 class UserInput:
-    def __init__(self):
-        self.train_and_test = TrainAndTest.TrainAndTest()
+    def __init__(self, ann):
+        self.train_and_test = ann.train_test
         self.data = DataLoader.Data()
         self.entries = ['0','0','0','0','0','0','0','0','0','0']
         self.new_row = self.create_row()
 
     def create_row(self):
         new_row = pd.DataFrame(np.zeros((1, len(self.data.movies.columns.tolist()))), columns = self.data.movies.columns)
-        new_row.loc[[0], :'vote_count'] = [self.entries[0], #collection
-                                                self.entries[1], #budget
-                                                self.entries[2], #popularity
-                                                self.entries[3], #release_date
-                                                self.entries[4], #revenue
-                                                self.entries[5], #runtime
+        new_row.loc[[0], :'vote_count'] = [int(self.entries[0]), #collection
+                                                int(self.entries[1]), #budget
+                                                float(self.entries[2]), #popularity
+                                                int(self.entries[3]), #release_date
+                                                int(self.entries[4]), #revenue
+                                                int(self.entries[5]), #runtime
                                                 0,
-                                                self.entries[6] #vote count  
+                                                int(self.entries[6]) #vote count  
                                                 ]                                   
 
         self.genre = self.entries[7].lower()
