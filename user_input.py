@@ -39,7 +39,7 @@ class UserInput:
             new_row.loc[[0], self.production_country] = 1
         else:
             new_row.loc[[0], 'other_country'] = 1
-
+        print(new_row) 
         return new_row
     
     def send_row(self):

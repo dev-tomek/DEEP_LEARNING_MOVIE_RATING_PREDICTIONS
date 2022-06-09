@@ -83,15 +83,15 @@ class GUI:
         self.text_boxes[0].insert(tk.END, entry_values)
         self.text_boxes[0].config(state=tk.DISABLED)
         self.user_input.entries = entry_values
-        self.user_input.new_row = self.user_input.create_row()
+        self.user_input.new_row = self.user_input.create_row()  
         self.user_input.send_row()
-        self.user_input.train_and_test.scaling(True)
-        return entry_values
+        X, y, self.ann.user_row , PredictorScalerFit, TargetVarScalerFit, X_train, X_test, y_train, y_test = self.user_input.train_and_test.scaling(with_extraction=True)
+        #return entry_values
 
     def Prediction(self):
         self.text_boxes[1].delete('1.0', tk.END) #clearuje za kazdym razem text box
         #self.text_boxes[1].insert(tk.END, str(self.ann.p))
-        print(self.ann.p)
+        print(self.ann.prediction_constraint())
         self.text_boxes[1].config(state=tk.DISABLED) #blokuje edyotowanie 
 
     #READ INPUT BUTTON

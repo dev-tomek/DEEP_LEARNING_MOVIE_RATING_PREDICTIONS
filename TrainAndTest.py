@@ -17,7 +17,7 @@ class TrainAndTest:
         self.X, self.y, self.user_row, self.PredictorScalerFit, self.TargetVarScalerFit, self.X_train, self.X_test, self.y_train, self.y_test = self.scaling()
 
     def extract_new_row(self, X, y):
-        new_X = X[-1] #wyslac tego xa do ann
+        new_X = X[-1] #wyslac tego xa do ann  
         X_with_deletion = X[:-1]
         y_with_deletion = y[:-1]
         return X_with_deletion, y_with_deletion, new_X
@@ -25,7 +25,7 @@ class TrainAndTest:
     def scaling(self, with_extraction=False):
         # set predictors' (X) and tagret (y) values
         X = self.data.movies[self.features]
-        y = self.data.movies[self.target]
+        y = self.data.movies[self.target] 
         new_X = None
     
         # create fit object

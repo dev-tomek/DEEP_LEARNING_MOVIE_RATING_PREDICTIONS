@@ -27,15 +27,20 @@ class NeuralNetwork:
 
 
     def prediction_constraint(self):
-        if not self.user_row:
+        if self.user_row is None:
             p = None
         else:
             p = self.prediction()
         return p 
-
+        
 
     def prediction(self):
-        p = self.model.predict(self.user_row)
+        print(type(self.train_test.X_test))
+        #print(self.train_test.X_test.shape)
+        #print(self.train_test.X_test)
+        print(np.reshape(self.user_row, (1, 82)).shape)
+        print(np.reshape(self.user_row, (1, 82)))
+        p = self.model.predict(np.reshape(self.user_row, (1, 82)))
         p = self.train_test.TargetVarScalerFit.inverse_transform(p)
         return p
 
