@@ -1,54 +1,10 @@
-PLAN:
-1. Selekcja danych 
-2. Analiza poszczególnych kolumn
-3. Data wrangling
-    -> np. rozbicie slownikow na kolumny
-4. Przygotowanie danych do ANN
+GUI ARS:
+AR: wypisywanie wyniku do GUI
+AR: ograniczenie rangeu + zaokraglanie
+AR: zmiany graficzne w GUI
 
-
-
-- tkinter app tut
-#https://www.youtube.com/watch?v=itRLRfuL_PQ&ab_channel=PythonSimplified
-
-
-
-
-
-
-1. Jakie dane nas interesują:
-- adult == FALSE (DONE)
-- status == 'Released' (DONE)
-- video == FALSE (DONE)
-
-2. Jakie kolumny?
-- budget (DONE: analysis, casted to numerical)
-AR: zmienić data type na liczbe, zrobić kategorie
-- genre (TOMASZ, co jest zrobione?)
-AR: wyciągnąć gatunek ze słownika
-- homepage (?)
-- original_language (DONE: category 'other' assigned to lang count < 100)
-- popularity (DONE: normalized 0-100)
-AR: zamienić na liczbe (DONE)
-- production_company 
-AR: extract from dictionaries
-- production_countries
-AR: extract from dictionaries
-- release_date
-AR: wyciągnąć rok (DONE)
-- revenue (DONE: analysis)
-- runtime (DONE: analysis, czy wyrzucamy filmy długości powyżej 4h???)
-AR: datatype
-- vote_average (outcome variable)
-AR: datatype
-- vote_count
-AR: datatype
-
-
-3. OTHER AR
-AR: w vote_count usunac te rekordy ktore maja wartosc 0
-
-
-
-03.05.2022 PLAN
-- ogarnac dictionary
-- kolumna title
+REPORT ARS:
+AR: porobic kategorie
+AR: badac accuracy
+AR: hyperparameter tuning - architektura sieci
+AR: zbadac czas predykcji

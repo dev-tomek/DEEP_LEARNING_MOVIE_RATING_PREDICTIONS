@@ -90,8 +90,8 @@ class GUI:
 
     def Prediction(self):
         self.text_boxes[1].delete('1.0', tk.END) #clearuje za kazdym razem text box
-        #self.text_boxes[1].insert(tk.END, str(self.ann.p))
-        print(self.ann.prediction_constraint())
+        self.text_boxes[1].insert(tk.END, round(self.ann.prediction_constraint()[0][0], 2))
+       # print(self.ann.prediction_constraint())
         self.text_boxes[1].config(state=tk.DISABLED) #blokuje edyotowanie 
 
     #READ INPUT BUTTON
