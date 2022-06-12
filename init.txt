@@ -1,0 +1,45 @@
+EXAMPLE 1
+
+btc: 1
+budget: 30000000
+popularity: 21.946943
+year: 1995
+revenue: 373554033
+run_time: 81
+vote: 5415
+genre: animation
+language: en
+country: US
+
+expected_result: 7.7
+
+EXAMPLE 2
+
+btc: 0
+budget: 50000000
+popularity: 33.694599
+year: 2017
+revenue: 66913939
+run_time: 86
+vote: 327
+genre: comedy
+language: en
+country: US
+
+expected_result: 5.8
+
+
+EXAMPLE 3
+
+btc: 0
+budget: 6000000
+popularity: 16.302466
+year: 1995
+revenue: 23341568
+run_time: 106
+vote: 3334
+genre: crime
+language: en
+country: US
+
+expected_result: 8.1
