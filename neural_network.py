@@ -23,9 +23,6 @@ class NeuralNetwork:
         self.user_row = self.train_test.user_row
         self.p = self.prediction_constraint()
 
-
-
-
     def prediction_constraint(self):
         if self.user_row is None:
             p = None
@@ -36,8 +33,6 @@ class NeuralNetwork:
 
     def prediction(self):
         print(type(self.train_test.X_test))
-        #print(self.train_test.X_test.shape)
-        #print(self.train_test.X_test)
         print(np.reshape(self.user_row, (1, 82)).shape)
         print(np.reshape(self.user_row, (1, 82)))
         p = self.model.predict(np.reshape(self.user_row, (1, 82)))

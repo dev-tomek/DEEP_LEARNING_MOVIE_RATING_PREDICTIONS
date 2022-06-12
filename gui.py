@@ -70,6 +70,9 @@ class GUI:
         text_boxes = [T, P]
         return text_boxes
 
+    def clear_entry_boxes(self):
+        for entry in self.entries:
+            entry.delete(0, tk.END)
 
     def read_input(self):
         entry_values = []
@@ -86,21 +89,29 @@ class GUI:
         self.user_input.new_row = self.user_input.create_row()  
         self.user_input.send_row()
         X, y, self.ann.user_row , PredictorScalerFit, TargetVarScalerFit, X_train, X_test, y_train, y_test = self.user_input.train_and_test.scaling(with_extraction=True)
-        #return entry_values
+
+    def range_threshold(self, func):
+        output = func()[0][0]
+        if output > 10:
+            output = 10
+        elif output < 1:
+            output = 1 
+        return output 
 
     def Prediction(self):
+        self.read_input()
+        self.text_boxes[1].configure(state='normal')
         self.text_boxes[1].delete('1.0', tk.END) #clearuje za kazdym razem text box
-        self.text_boxes[1].insert(tk.END, round(self.ann.prediction_constraint()[0][0], 2))
-       # print(self.ann.prediction_constraint())
-        self.text_boxes[1].config(state=tk.DISABLED) #blokuje edyotowanie 
+        self.text_boxes[1].insert(tk.END, round(self.range_threshold(self.ann.prediction_constraint),2))
+        self.text_boxes[1].config(state=tk.DISABLED) #blokuje edyotowanie
+         
 
-    #READ INPUT BUTTON
     def button_definitions(self):
-        b1 = tk.Button(self.root, text='Read Input ', 
-                    command=self.read_input, bg='gray').grid(row=4, 
-                                                             column=1, 
-                                                             sticky=tk.W, 
-                                                             pady=4)
+        b1 = tk.Button(self.root, text='   Clear all   ', 
+                   command=self.clear_entry_boxes, bg='gray').grid(row=4, 
+                                                            column=1, 
+                                                            sticky=tk.W, 
+                                                            pady=4)
         #PREDICT BUTTON
         b2 = tk.Button(self.root, text='    Predict    ', 
                     command=self.Prediction, bg='grey').grid(row=4, 

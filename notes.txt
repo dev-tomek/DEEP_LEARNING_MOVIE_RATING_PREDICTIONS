@@ -1,5 +1,4 @@
 GUI ARS:
-AR: wypisywanie wyniku do GUI
 AR: ograniczenie rangeu + zaokraglanie
 AR: zmiany graficzne w GUI
 
